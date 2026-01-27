@@ -1,4 +1,4 @@
 # my-android-weather
 
 This is a simple weather app for Android
-Using Retrofit
+Using Retrofit, public weather API
