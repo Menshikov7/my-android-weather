@@ -4,10 +4,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myweather.enpoints.ForecastService
-import com.example.myweather.models.Result as WeatherResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import com.example.myweather.models.Result as WeatherResult
 
 class WeatherViewModel : ViewModel() {
     private val retrofit = RetrofitBuilder.createRetrofit()

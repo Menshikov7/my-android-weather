@@ -15,19 +15,13 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myweather.enpoints.ForecastService
-import com.example.myweather.models.Current
 import com.example.myweather.ui.theme.MyWeatherTheme
-
-private lateinit var forecastService: ForecastService
 
 class MainActivity : ComponentActivity() {
     private val viewModel: WeatherViewModel by viewModels()
@@ -85,32 +79,3 @@ fun WeatherScreen(viewModel: WeatherViewModel) {
         )
     }
 }
-
-
-// Заглушка для получения погоды
-//private suspend fun fetchWeather(city: String, result: MutableState<String>) {
-//    var current: Current? = null
-//
-//    if (city.isBlank()) {
-//        result.value = "Введите название города"
-//        return
-//    }
-
-//    current = forecastService.forecast(city).execute().body()?.current
-//    result.value = """
-//            Погода в городе: $city
-//            Температура: ${current?.temperature}°C
-//            Влажность: ${current?.humidity}%
-//            Ветер: ${current?.wind_speed}м/с
-//            Качество воздуха: ${current?.air_quality}
-//        """.trimIndent()
-//    result.value = "Тут будет погода"
-//}
-
-//@Preview(showBackground = true)
-//@Composable
-//fun WeatherScreenPreview() {
-//    MyWeatherTheme {
-//        WeatherScreen(viewModel)
-//    }
-//}
