@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myweather.ui.theme.MyWeatherTheme
@@ -39,33 +40,43 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun WeatherScreen(viewModel: WeatherViewModel) {
+fun WeatherScreen(
+    viewModel: WeatherViewModel,
+    modifier: Modifier = Modifier
+) {
     val cityInput = remember { mutableStateOf("") }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .testTag("weather_screen_root"),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Погода",
             fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier
+                .padding(bottom = 16.dp)
+                .testTag("weather_title")
         )
 
         TextField(
             value = cityInput.value,
             onValueChange = { cityInput.value = it },
             label = { Text("Город") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("city_input")
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
             onClick = { viewModel.fetchWeather(cityInput.value) },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("fetch_button")
         ) {
             Text("Получить")
         }
@@ -74,7 +85,9 @@ fun WeatherScreen(viewModel: WeatherViewModel) {
 
         Text(
             text = viewModel.weatherResult.value,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("weather_result"),
             fontSize = 16.sp
         )
     }
